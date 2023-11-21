@@ -81,13 +81,18 @@ void parse_sbus(sbus_decode_t* dest, const uint8_t* src, uint8_t length)
         {
             continue;
         }
-        else if (*src == SBUS_FOOTER &&
-            parsed_channels.cur_parsed_byte_num == SBUS_INPUT_SIZE - 1U)
+        else if (*src == SBUS_FOOTER)
         {
-            memcpy(dest->channels_val,
-                    parsed_channels.value,
-                    SBUS_CHANNELS_COUNT * sizeof(uint16_t));
-            dest->trust_flag = true;
+            if (parsed_channels.cur_parsed_byte_num == SBUS_INPUT_SIZE - 1U)
+            {
+                memcpy(dest->channels_val,
+                        parsed_channels.value,
+                        SBUS_CHANNELS_COUNT * sizeof(uint16_t));
+                dest->trust_flag = true;
+            }
+
+            parsed_channels.cur_parsed_byte_num = SBUS_INPUT_SIZE;
+            continue;
         }
         else if (parsed_channels.cur_parsed_byte_num == SBUS_DIGITAL_CHANNELS_BYTE_NUM)
         {
