@@ -9,7 +9,8 @@ add_subdirectory(.. ./build)
 include(CTest)
 
 set(TESTS
-    parsing_test)
+    parsing_test
+    raw_data_bigger_then_decode_buffer_test)
 
 foreach(TEST IN LISTS TESTS)
     add_executable(${TEST} src/${TEST}.c)
