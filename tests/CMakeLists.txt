@@ -10,7 +10,8 @@ include(CTest)
 
 set(TESTS
     parsing_test
-    raw_data_bigger_then_decode_buffer_test)
+    raw_data_bigger_then_decode_buffer_test
+    raw_data_lower_then_decode_buffer_test)
 
 foreach(TEST IN LISTS TESTS)
     add_executable(${TEST} src/${TEST}.c)
