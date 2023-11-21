@@ -47,7 +47,7 @@ static void parse_digital_channels(uint16_t* cur_channel,
         ((cur_byte & SBUS_18_CHANNEL_MASK) >> 1U);
 }
 
-void parse_sbus(sbus_decode_t* dest, const uint8_t* src, uint8_t length)
+void parse_sbus(sbus_decode_t* dest, const uint8_t* src, const uint8_t length)
 {
     dest->trust_flag = false;
 
