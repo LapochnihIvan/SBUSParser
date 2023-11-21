@@ -38,12 +38,12 @@ static uint16_t* parse_servo_channel_byte(uint16_t* cur_channel,
     return cur_channel;
 }
 
-static void parse_digital_channels(uint16_t channels_val[],
+static void parse_digital_channels(uint16_t* cur_channel,
                                    const uint8_t cur_byte)
 {
-    channels_val[16] = SBUS_MAX_CHANNEL_VAL *
+    *cur_channel = SBUS_MAX_CHANNEL_VAL *
         (cur_byte & SBUS_17_CHANNEL_MASK);
-    channels_val[17] = SBUS_MAX_CHANNEL_VAL *
+    *++cur_channel = SBUS_MAX_CHANNEL_VAL *
         ((cur_byte & SBUS_18_CHANNEL_MASK) >> 1U);
 }
 
@@ -96,7 +96,7 @@ void parse_sbus(sbus_decode_t* dest, const uint8_t* src, uint8_t length)
         }
         else if (parsed_channels.cur_parsed_byte_num == SBUS_DIGITAL_CHANNELS_BYTE_NUM)
         {
-            parse_digital_channels(parsed_channels.value, *src);
+            parse_digital_channels(cur_channel, *src);
         }
         else
         {
