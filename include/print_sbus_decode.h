@@ -16,7 +16,7 @@ typedef enum sbus_dbg_port
 
 /**
  * @brief Print SBUS parsing result
- * @details Print SBUS parsing result to one of debug ports
+ * @details This function print SBUS parsing result to one of debug ports
  * @param decode SBUS parsing result
  * @param port Debug port to printing
  * @retval None
